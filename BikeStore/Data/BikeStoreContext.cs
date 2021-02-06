@@ -34,6 +34,8 @@ namespace BikeStore.Data
             {
                 entity.ToTable("brands", "production");
 
+                entity.HasKey(e => e.BrandId);
+
                 entity.Property(e => e.BrandId).HasColumnName("brand_id");
 
                 entity.Property(e => e.BrandName)
@@ -47,6 +49,8 @@ namespace BikeStore.Data
             {
                 entity.ToTable("categories", "production");
 
+                entity.HasKey(e => e.CategoryId);
+
                 entity.Property(e => e.CategoryId).HasColumnName("category_id");
 
                 entity.Property(e => e.CategoryName)
@@ -59,6 +63,8 @@ namespace BikeStore.Data
             modelBuilder.Entity<Customer>(entity =>
             {
                 entity.ToTable("customers", "sales");
+
+                entity.HasKey(e => e.CustomerId);
 
                 entity.Property(e => e.CustomerId).HasColumnName("customer_id");
 
@@ -109,6 +115,8 @@ namespace BikeStore.Data
             modelBuilder.Entity<Order>(entity =>
             {
                 entity.ToTable("orders", "sales");
+
+                entity.HasKey(e => e.OrderId);
 
                 entity.Property(e => e.OrderId).HasColumnName("order_id");
 
@@ -188,6 +196,8 @@ namespace BikeStore.Data
             {
                 entity.ToTable("products", "production");
 
+                entity.HasKey(e => e.ProductId);
+
                 entity.Property(e => e.ProductId).HasColumnName("product_id");
 
                 entity.Property(e => e.BrandId).HasColumnName("brand_id");
@@ -221,8 +231,9 @@ namespace BikeStore.Data
             {
                 entity.ToTable("staffs", "sales");
 
-                entity.HasIndex(e => e.Email, "UQ__staffs__AB6E616458D5E831")
-                    .IsUnique();
+                entity.HasKey(e => e.StaffId);
+
+                entity.HasIndex(e => e.Email).IsUnique().HasName("UQ__staffs__AB6E616458D5E831");
 
                 entity.Property(e => e.StaffId).HasColumnName("staff_id");
 
@@ -293,6 +304,8 @@ namespace BikeStore.Data
             modelBuilder.Entity<Store>(entity =>
             {
                 entity.ToTable("stores", "sales");
+
+                entity.HasKey(e => e.StoreId);
 
                 entity.Property(e => e.StoreId).HasColumnName("store_id");
 
